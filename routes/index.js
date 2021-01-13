@@ -1,5 +1,7 @@
 const router = require('express').Router();
 
-router.use('/' /** TODO */);
+const annonce = require('../controllers/annonce');
+
+router.use('/annonce', annonce);
 
 module.exports = router;
