@@ -4,6 +4,7 @@
     "es6": true,
     "node": true
   },
+  "parser": "babel-eslint",
   "extends": ["prettier", "airbnb-base"],
   "plugins": ["prettier"],
   "parserOptions": {
@@ -11,6 +12,7 @@
   },
   "rules": {
     "comma-dangle": "off",
-    "implicit-arrow-linebreak": "off"
+    "implicit-arrow-linebreak": "off",
+    "import/no-extraneous-dependencies": "off"
   }
 }
