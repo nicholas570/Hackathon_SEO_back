@@ -9,8 +9,8 @@ const connection = require('../config/connection');
 const { JWT_SECRET } = process.env;
 
 router.post('/', (req, res) => {
-  const { email, password } = req.body;
-  if (email === '' || password === '') {
+  const { email, password: pwd } = req.body;
+  if (email === '' || pwd === '') {
     res.status(400).send('Please specify your email or password');
   } else {
     connection.query(
@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
           });
         } else if (result.length === 0) {
           res.status(403).send('Invalid email');
-        } else if (bcrypt.compareSync(password, result[0].password)) {
+        } else if (bcrypt.compareSync(pwd, result[0].password)) {
           const token = jwt.sign(
             {
               id: result.id,
@@ -32,11 +32,7 @@ router.post('/', (req, res) => {
             JWT_SECRET,
             { expiresIn: '1h' }
           );
-          const user = {
-            id: result[0].id,
-            email,
-            password: 'hidden',
-          };
+          const { password, ...user } = result[0];
           res.status(200).json({ user, token });
         } else {
           res.status(403).send('invalid password');
