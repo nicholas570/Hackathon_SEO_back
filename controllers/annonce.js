@@ -31,7 +31,7 @@ router.get('/', authenticateWithJsonWebToken, async (req, res) => {
     if (!allAnnonces.length) {
       return res.status(204).json({
         success: false,
-        message: 'No announcement.',
+        message: 'No announcements.',
       });
     }
 
@@ -55,9 +55,9 @@ router.get('/:id', authenticateWithJsonWebToken, async (req, res) => {
     const annonce = await Annonce.findOneById(id);
 
     if (!annonce) {
-      return res.status(404).json({
+      return res.status(204).json({
         success: false,
-        message: '404 Not found.',
+        message: 'No announcement.',
       });
     }
 
