@@ -2,22 +2,23 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const bcrypt = require('bcrypt');
+
 const jwt = require('jsonwebtoken');
+
+const router = express.Router();
 const connection = require('../config/connection');
 
 const { CLIENT_URL, JWT_SECRET } = process.env;
 
-const app = express();
-
-app.use(
+router.use(
   cors({
     origin: CLIENT_URL,
   })
 );
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
 
-app.post('/login', (req, res) => {
+router.post('/login', (req, res) => {
   const { email, password } = req.body;
   if (email === '' || password === '') {
     res.status(400).send('Please specify your email or password');
@@ -54,3 +55,5 @@ app.post('/login', (req, res) => {
     );
   }
 });
+
+module.exports = router;
