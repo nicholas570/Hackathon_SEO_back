@@ -1,7 +1,6 @@
 const connection = require('../config/connection');
-const CrudDao = require('./CrudDao');
 
-class Annonce extends CrudDao {
+class Annonce {
   static table = 'annonces';
 
   static companyFK = 'entreprises';
