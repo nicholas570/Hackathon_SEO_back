@@ -25,8 +25,9 @@ const authenticateWithJsonWebToken = (req, res, next) => {
 };
 
 router.get('/', authenticateWithJsonWebToken, async (req, res) => {
+  const { langage } = req.query;
   try {
-    const allAnnonces = await Annonce.findAllAnnonces();
+    const allAnnonces = await Annonce.findAllAnnonces(langage);
 
     if (!allAnnonces.length) {
       return res.status(204).json({
