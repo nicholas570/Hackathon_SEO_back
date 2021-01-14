@@ -5,10 +5,12 @@ require('dotenv').config();
 const loginRoute = require('./login');
 const registerRoute = require('./register');
 
-const app = express();
+const router = express.router();
 
-app.use(express.json());
-app.use(cors());
+router.use(express.json());
+router.use(cors());
 
-app.use('/login', loginRoute);
-app.use('/register', registerRoute);
+router.use('/login', loginRoute);
+router.use('/register', registerRoute);
+
+module.exports = router;

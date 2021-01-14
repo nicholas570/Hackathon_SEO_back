@@ -17,7 +17,7 @@ router.use(
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
-router.post('/register', (req, res) => {
+router.post('/', (req, res) => {
   const { email, password } = req.body;
 
   if (email === '' || password === '') {

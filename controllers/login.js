@@ -18,7 +18,7 @@ router.use(
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
-router.post('/login', (req, res) => {
+router.post('/', (req, res) => {
   const { email, password } = req.body;
   if (email === '' || password === '') {
     res.status(400).send('Please specify your email or password');
