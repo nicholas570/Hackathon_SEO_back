@@ -29,9 +29,9 @@ router.get('/', authenticateWithJsonWebToken, async (req, res) => {
     const allAnnonces = await Annonce.findAllAnnonces();
 
     if (!allAnnonces.length) {
-      return res.status(404).json({
+      return res.status(204).json({
         success: false,
-        message: '404 Not found.',
+        message: 'No announcement.',
       });
     }
 
