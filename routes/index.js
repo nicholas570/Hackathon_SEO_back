@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-const annonce = require('../controllers/annonce');
+const index = require('../controllers/index');
 
-router.use('/annonce', annonce);
+router.use('/', index);
 
 module.exports = router;

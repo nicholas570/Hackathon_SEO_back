@@ -1,15 +1,12 @@
 const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
+
+const router = express.Router();
 
 const loginRoute = require('./login');
 const registerRoute = require('./register');
+const annonceRoute = require('./annonce');
 
-const router = express.router();
-
-router.use(express.json());
-router.use(cors());
-
+router.use('/annonce', annonceRoute);
 router.use('/login', loginRoute);
 router.use('/register', registerRoute);
 

@@ -1,6 +1,4 @@
 const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
 const bcrypt = require('bcrypt');
 
 const jwt = require('jsonwebtoken');
@@ -8,15 +6,7 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 const connection = require('../config/connection');
 
-const { CLIENT_URL, JWT_SECRET } = process.env;
-
-router.use(
-  cors({
-    origin: CLIENT_URL,
-  })
-);
-router.use(express.json());
-router.use(express.urlencoded({ extended: true }));
+const { JWT_SECRET } = process.env;
 
 router.post('/', (req, res) => {
   const { email, password } = req.body;
@@ -24,7 +14,7 @@ router.post('/', (req, res) => {
     res.status(400).send('Please specify your email or password');
   } else {
     connection.query(
-      'SELECT * FROM user WHERE email=?',
+      'SELECT * FROM users WHERE mail=?',
       [email],
       (err, result) => {
         if (err) {
